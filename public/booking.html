@@ -204,8 +204,9 @@
           optgroup.label = group.label;
           group.items.forEach((item) => {
             const option = document.createElement('option');
-            option.value = item.name;
-            option.textContent = item.name;
+            option.value = item.id;
+            option.textContent = Number.isFinite(item.price) ? `${item.name} — ${item.price.toLocaleString('th-TH')} บาท` : item.name;
+            option.dataset.name = item.name;
             option.dataset.mode = group.kind === 'call-pack' ? 'call' : 'async';
             option.dataset.kind = group.kind;
             optgroup.appendChild(option);
@@ -240,7 +241,7 @@
       summaryTime.textContent = isCall && date.value && time.value ? `${date.value} · ${time.value} น.` : mode === 'async' ? 'ตามกำหนดส่ง' : '—';
     }
     function refreshSummary() {
-      summaryPackage.textContent = packageInput.value || 'ยังไม่ได้เลือก';
+      summaryPackage.textContent = packageInput.value ? packageInput.selectedOptions[0]?.textContent : 'ยังไม่ได้เลือก';
       refreshMode();
     }
     async function checkSlotAvailability() {
@@ -254,7 +255,7 @@
       slotStatus.textContent = 'กำลังตรวจสอบคิว Call…';
       slotStatus.className = 'slot-status checking';
       try {
-        const params = new URLSearchParams({ package: packageInput.value, date: date.value, time: time.value });
+        const params = new URLSearchParams({ package: packageInput.selectedOptions[0]?.dataset.name || '', date: date.value, time: time.value });
         const response = await fetch(`/api/queue/availability?${params}`, { cache: 'no-store' });
         const payload = await response.json();
         if (requestId !== availabilityRequest) return null;
@@ -291,7 +292,8 @@
         return;
       }
       const data = Object.fromEntries(new FormData(form).entries());
-      data.packageName = data.package;
+      data.packageId = data.package;
+      data.packageName = packageInput.selectedOptions[0]?.dataset.name || '';
       data.packageKind = packageInput.selectedOptions[0]?.dataset.kind || '';
       data.serviceMode = selectedMode();
       delete data.package;

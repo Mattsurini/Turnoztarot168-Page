@@ -14,7 +14,7 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const catalogEntry = await resolveCatalogPackage(body?.packageName, body?.packageKind);
+    const catalogEntry = await resolveCatalogPackage(body?.packageName, body?.packageKind, body?.packageId);
     const input = validateBookingInput(body, catalogEntry);
     if (input.serviceMode === "call") {
       if (!input.appointmentDate || !input.appointmentTime) {
