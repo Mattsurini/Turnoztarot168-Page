@@ -4,6 +4,7 @@ import { isBangkokFutureSlot } from "../../../lib/call-slots";
 import { notifyHanbiQueueCreated } from "../../../lib/hanbi-notify";
 import { resolveCatalogPackage } from "../../../lib/notion";
 import { validateBookingInput } from "../../../lib/booking-validation";
+import { publicBookingConfirmation } from "../../../lib/public-status";
 
 export async function GET(request) {
   const status = new URL(request.url).searchParams.get("status") || "";
@@ -42,7 +43,7 @@ export async function POST(request) {
       console.error("Hanbi queue notification failed", notificationError);
       notification = { sent: false, skipped: false, reason: "Hanbi notification failed" };
     }
-    return NextResponse.json({ booking, notification }, { status: 201 });
+    return NextResponse.json({ booking: publicBookingConfirmation(booking), notification }, { status: 201 });
   } catch (error) {
     if (error?.code === "INVALID_BOOKING") {
       return NextResponse.json({ error: error.message }, { status: 400 });
