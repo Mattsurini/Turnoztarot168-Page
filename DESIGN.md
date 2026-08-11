@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Ferrari-design-analysis
-description: A luxury-automotive brand whose marketing surfaces read as cinematic editorial. The base canvas is **near-black** (`#181818`) holding pure white display type; white-canvas bands appear only inside specific editorial contexts (preowned listings, pricing tables). The single brand voltage is **Rosso Corsa** (`#da291c`) — the iconic Ferrari racing red — used scarcely on primary CTAs, the Cavallino mark, and Formula 1 race-position highlights. Type runs **FerrariSans** at modest weights (display 500, body 400) — never bombastic. Spacing follows an explicit 8px token ladder (`xxxs` 4px through `super` 128px); generous editorial pacing throughout. The brand's strongest visual signature is the **full-bleed cinematic hero photograph** that fills the viewport top with car photography, model details, or trackside livery — followed by a tighter editorial body layout below.
+description: A luxury-automotive brand whose marketing surfaces read as cinematic editorial. The base canvas is **near-black** (`#181818`) holding pure white display type; white-canvas bands appear only inside specific editorial contexts (preowned listings, pricing tables). The single brand voltage is **Rosso Corsa** (`#da291c`) — the iconic Ferrari racing red — used scarcely on primary CTAs, the Cavallino mark, and Formula 1 race-position highlights. Type runs **Superstore** with Thai fallbacks at modest weights (display 500, body 400) — never bombastic. Spacing follows an explicit 8px token ladder (`xxxs` 4px through `super` 128px); generous editorial pacing throughout. The brand's strongest visual signature is the **full-bleed cinematic hero photograph** that fills the viewport top with car photography, model details, or trackside livery — followed by a tighter editorial body layout below.
 
 colors:
   primary: "#da291c"
@@ -33,82 +33,82 @@ colors:
 
 typography:
   display-mega:
-    fontFamily: "'FerrariSans', -apple-system, system-ui, sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 80px
     fontWeight: 500
     lineHeight: 1.05
     letterSpacing: -1.6px
   display-xl:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 56px
     fontWeight: 500
     lineHeight: 1.1
     letterSpacing: -1.12px
   display-lg:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 36px
     fontWeight: 500
     lineHeight: 1.2
     letterSpacing: -0.36px
   display-md:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 26px
     fontWeight: 500
     lineHeight: 1.5
     letterSpacing: 0.195px
   title-md:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 18px
     fontWeight: 700
     lineHeight: 1.2
     letterSpacing: 0
   title-sm:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 16px
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: 0.08px
   body-md:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 14px
     fontWeight: 400
     lineHeight: 1.5
     letterSpacing: 0
   body-sm:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 13px
     fontWeight: 400
     lineHeight: 1.5
     letterSpacing: 0
   caption:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 12px
     fontWeight: 400
     lineHeight: 1.4
     letterSpacing: 0
   caption-uppercase:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 11px
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: 1.1px
     textTransform: uppercase
   button:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 14px
     fontWeight: 700
     lineHeight: 1.0
     letterSpacing: 1.4px
     textTransform: uppercase
   nav-link:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 13px
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: 0.65px
     textTransform: uppercase
   number-display:
-    fontFamily: "'FerrariSans', sans-serif"
+    fontFamily: "'Superstore', 'Noto Sans Thai', 'Leelawadee UI', sans-serif"
     fontSize: 80px
     fontWeight: 700
     lineHeight: 1.0
@@ -273,14 +273,14 @@ components:
 
 Ferrari's marketing site reads as cinematic editorial — closer to a luxury-magazine spread than a typical car-OEM site. The base canvas is **near-black** (`{colors.canvas}` — #181818) holding pure white display type; white-canvas bands appear only inside specific editorial contexts (preowned listings, pricing tables, dealer surfaces). The single brand voltage is **Rosso Corsa** (`{colors.primary}` — #da291c), the iconic Ferrari racing red, used scarcely on primary CTAs, the Cavallino mark, and Formula 1 race-position highlights.
 
-Type runs **FerrariSans** as the single sans family at modest weights — display 500, body 400. CTA labels render in uppercase with generous tracking (1.1-1.4px). The brand never uses bold display copy.
+Type runs **Superstore** as the single sans family at modest weights — display 500, body 400. CTA labels render in uppercase with generous tracking (1.1-1.4px). The brand never uses bold display copy.
 
 The brand's strongest visual signature is the **full-bleed cinematic hero photograph** — top-of-page imagery shows car photography, model details, or trackside livery without any chrome competing with it. Headlines float over the bottom of the photo or sit in a tight band beneath. Spacing follows the explicit 8px token ladder: `xxxs` 4 / `xxs` 8 / `xs` 16 / `sm` 24 / `md` 32 / `lg` 48 / `xl` 64 / `xxl` 96 / `super` 128.
 
 **Key Characteristics:**
 - Single accent: `{colors.primary}` (Rosso Corsa #da291c) for primary CTAs, the Cavallino, F1 race-position highlights. Used scarcely.
 - Near-black canvas (#181818) — never pure black. White-canvas bands only inside editorial contexts.
-- Single sans family: FerrariSans across every text role.
+- Single sans family: Superstore across every text role.
 - Display weight stays at 500 — never bold.
 - CTA labels render uppercase with 1.4px tracking.
 - Sharp `{rounded.none}` (0px) corners on every CTA, card, and band — luxury-automotive precision.
@@ -326,7 +326,7 @@ The brand's strongest visual signature is the **full-bleed cinematic hero photog
 ## Typography
 
 ### Font Family
-**FerrariSans** is the licensed single sans family across every text role. Fallback: `-apple-system, system-ui, sans-serif`. No display/body family split.
+**Superstore** is the single type family across every text role. Thai fallback: `Noto Sans Thai`, then `Leelawadee UI`, then `sans-serif`. No display/body family split.
 
 ### Hierarchy
 
@@ -353,7 +353,7 @@ The brand's strongest visual signature is the **full-bleed cinematic hero photog
 - **Negative letter-spacing on display only.** -0.36px to -1.6px on display sizes; body stays at 0.
 
 ### Note on Font Substitutes
-FerrariSans is licensed. Open-source substitute: **Inter** at weight 500 with letter-spacing -1%, or **Söhne** for closer humanist proportions.
+Superstore is loaded from the project font source. Keep the Thai fallback stack intact so text metrics remain consistent when the webfont is unavailable.
 
 ## Layout
 
@@ -518,13 +518,13 @@ The radius vocabulary is **sharp by default**. Sharp 0px corners are the brand b
 3. Variants live as separate entries inside `components:`.
 4. Use `{token.refs}` everywhere — never inline hex.
 5. Hover state never documented.
-6. FerrariSans 500 for display, 400/700 for body. Uppercase + tracking on CTAs and nav.
+6. Superstore 500 for display, 400/700 for body. Uppercase + tracking on CTAs and nav.
 7. Rosso Corsa stays scarce — primary CTAs, Cavallino, race-position highlights only.
 8. Use the explicit 8px named spacing ladder.
 
 ## Known Gaps
 
-- FerrariSans is a licensed typeface; Inter at weight 500 is the documented substitute.
+- Superstore is a licensed typeface; Noto Sans Thai and Leelawadee UI are the documented Thai fallbacks.
 - Animation timings (hero parallax, livery band entrance, race position counter) out of scope.
 - In-product surfaces (preowned configurator, F1 telemetry overlays) only partially captured via marketing surfaces.
 - Form validation states beyond focus not visible on captured surfaces.

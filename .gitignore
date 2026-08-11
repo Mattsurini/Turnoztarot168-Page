@@ -8,3 +8,8 @@ npm-debug.log*
 __pycache__/
 *.pyc
 *.artifact.json
+data/*.sqlite
+data/*.sqlite-wal
+data/*.sqlite-shm
+.vercel
+.env*

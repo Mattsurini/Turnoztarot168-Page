@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="แบบฟอร์มรับคิวการอ่านไพ่ Turboztarot168">
+  <title>จองคิวรับคำทำนาย — Turboztarot168</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family: "Superstore"; src: url("https://techsauce.co/font/Superstore-Regular.woff2") format("woff2"); font-style: normal; font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Superstore"; src: url("https://techsauce.co/font/Superstore-Bold.woff") format("woff"); font-style: normal; font-weight: 700; font-display: swap; }
+    :root {
+      --ivory: #181818;
+      --paper: #303030;
+      --ink: #fff;
+      --muted: #969696;
+      --line: #484848;
+      --terracotta: #da291c;
+      --terracotta-dark: #9d2211;
+      --clay: #da291c;
+      --sage: #303030;
+      --shadow: none;
+      --radius-lg: 0;
+      --radius-md: 0;
+      --serif: "Superstore", "Noto Sans Thai", sans-serif;
+      --sans: "Superstore", "Noto Sans Thai", "Leelawadee UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--ivory); }
+    body { margin: 0; color: var(--ink); background: var(--ivory); font-family: var(--sans); line-height: 1.65; }
+    .shell { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; font-weight: 800; letter-spacing: .02em; }
+    .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; background: var(--terracotta); color: white; border-radius: 0; font-family: var(--serif); font-size: 20px; }
+    .back { color: var(--muted); font-size: 14px; text-decoration: none; }
+    .back:hover, .back:focus-visible { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+    .intro { padding: 62px 0 28px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: end; }
+    .eyebrow { margin: 0 0 12px; color: var(--terracotta-dark); font-size: 12px; font-weight: 800; letter-spacing: .10em; text-transform: uppercase; }
+    h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 500; line-height: 1.35; letter-spacing: -.36px; }
+    h1 { max-width: 760px; font-size: clamp(48px, 8vw, 94px); }
+    h2 { font-size: clamp(34px, 5vw, 58px); }
+    h3 { font-size: 26px; }
+    .intro-copy p:not(.eyebrow) { max-width: 600px; margin: 22px 0 0; color: var(--muted); font-size: 17px; }
+    .promise { padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--paper); box-shadow: var(--shadow); }
+    .promise strong { display: block; margin-bottom: 8px; font-family: var(--serif); font-size: 24px; font-weight: 500; }
+    .promise span { color: var(--muted); font-size: 14px; }
+    .booking-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(270px, .8fr); gap: 22px; align-items: start; padding: 28px 0 76px; }
+    .form-card, .summary-card { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--paper); box-shadow: var(--shadow); }
+    .form-card { padding: clamp(22px, 4vw, 40px); }
+    .summary-card { position: sticky; top: 18px; padding: 26px; }
+    .section-label { display: flex; align-items: baseline; gap: 10px; margin: 28px 0 14px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .section-label:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+    .section-number { color: var(--terracotta); font-family: var(--serif); font-size: 25px; }
+    .section-label h2 { font-family: inherit; font-size: 18px; font-weight: 800; }
+    label { display: block; margin-bottom: 7px; font-size: 14px; font-weight: 800; }
+    .required { color: #ff8a7a; }
+    .field { margin-top: 15px; }
+    input, textarea, select { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 0; background: var(--ivory); color: var(--ink); font: inherit; font-size: 15px; }
+    textarea { min-height: 118px; resize: vertical; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--line); }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .choice { position: relative; display: block; margin: 0; padding: 17px; border: 1px solid var(--line); border-radius: var(--radius-md); cursor: pointer; transition: border-color .18s, background .18s, transform .18s; }
+    .choice:hover { transform: translateY(-2px); border-color: var(--terracotta); }
+    .choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .choice:has(input:focus-visible), .check:has(input:focus-visible) { outline: none; }
+    .choice:has(input:checked) { border-color: var(--terracotta); background: #3a201d; box-shadow: inset 0 0 0 1px var(--terracotta); }
+    .choice-title { display: block; font-size: 16px; font-weight: 800; }
+    .choice-copy { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; font-weight: 400; }
+    .conditional { display: none; margin-top: 16px; padding: 17px; border-radius: var(--radius-md); background: var(--ivory); }
+    .conditional.visible { display: block; }
+    .conditional p { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .check { display: flex; align-items: flex-start; gap: 10px; margin-top: 20px; font-weight: 400; }
+    .check input { width: 20px; min-height: 20px; margin-top: 3px; accent-color: var(--terracotta); }
+    .submit-row { display: flex; justify-content: flex-end; margin-top: 26px; }
+    button { min-height: 50px; padding: 14px 24px; border: 1px solid var(--terracotta); border-radius: 0; background: var(--terracotta); color: white; font: inherit; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; cursor: pointer; }
+    button:hover, button:focus-visible { background: var(--terracotta-dark); border-color: var(--terracotta-dark); }
+    button:disabled { cursor: not-allowed; opacity: .55; }
+    .summary-card h2 { font-family: inherit; font-size: 19px; font-weight: 800; }
+    .summary-note { margin: 8px 0 20px; color: var(--muted); font-size: 13px; }
+    .summary-list { margin: 0; padding: 0; list-style: none; }
+    .summary-list li { display: flex; justify-content: space-between; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    .summary-list span:first-child { color: var(--muted); }
+    .summary-list span:last-child { text-align: right; font-weight: 800; }
+    .summary-foot { margin: 20px 0 0; color: var(--muted); font-size: 13px; }
+    .success { display: none; margin-top: 18px; padding: 20px; border: 1px solid #49654d; border-radius: var(--radius-md); background: #26352c; }
+    .success.visible { display: block; }
+    .success strong { display: block; margin-bottom: 5px; }
+    .success p { margin: 0; color: #b7c8b8; font-size: 14px; }
+    .error { min-height: 22px; margin-top: 12px; color: #ff8a7a; font-size: 14px; }
+    footer { padding: 22px 0 38px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+    @media (max-width: 780px) { .intro, .booking-layout { grid-template-columns: 1fr; } .promise { transform: none; } .summary-card { position: static; order: -1; } }
+    @media (max-width: 520px) { .choice-grid, .two-col { grid-template-columns: 1fr; } .topbar { align-items: flex-start; } .back { padding-top: 8px; } .submit-row button { width: 100%; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="/index.html"><span class="brand-mark">T</span><span>Turboztarot168</span></a>
+    <a class="back" href="/index.html">กลับไปดูแพ็กเกจ</a>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <div class="intro-copy">
+        <p class="eyebrow">Reading queue / booking form</p>
+        <h1>ส่งคำขอรับคิว แบบไม่ต้องคุยนาน</h1>
+        <p>เลือกแพ็กเกจ กรอกข้อมูลที่จำเป็น แล้วส่งคำขอให้ BooM ตรวจคิวต่อ ระบบจะกำหนดรูปแบบบริการจากแพ็กเกจให้อัตโนมัติ</p>
+      </div>
+      <aside class="promise"><strong>สั้น ชัด ไม่ต้องสมัครสมาชิก</strong><span>การส่งฟอร์มคือการส่งคำขอรับคิว ยังไม่ใช่การยืนยันคิวจนกว่าจะได้รับข้อความยืนยัน</span></aside>
+    </section>
+
+    <section class="booking-layout" aria-label="แบบฟอร์มรับคิว">
+      <form class="form-card" id="booking-form" novalidate>
+        <div class="section-label"><span class="section-number">01</span><h2>เลือกบริการ</h2></div>
+        <div class="field">
+          <label for="package">แพ็กเกจ <span class="required">*</span></label>
+          <select id="package" name="package" required>
+            <option value="">กำลังโหลดรายการแพ็กเกจ…</option>
+          </select>
+        </div>
+
+
+        <div class="conditional" id="call-fields">
+          <p>เลือกวันและเวลาที่สะดวกสำหรับการ Call ระบบจะแสดงเป็นคำขอให้ BooM ตรวจสอบอีกครั้ง</p>
+          <div class="two-col"><div><label for="appointment-date">วันที่สะดวก <span class="required">*</span></label><input id="appointment-date" name="appointmentDate" type="date"></div><div><label for="appointment-time">เวลาที่สะดวก <span class="required">*</span></label><input id="appointment-time" name="appointmentTime" type="time"></div></div>
+        </div>
+        <div class="conditional" id="async-fields">
+          <p>ไม่ต้องเลือกวันนัด ระบบจะรับเข้าคิวและแจ้งวันที่คาดว่าจะได้รับคำทำนายหลังตรวจสอบข้อมูล</p>
+        </div>
+
+        <div class="section-label"><span class="section-number">02</span><h2>ข้อมูลสำหรับรับคิว</h2></div>
+        <div class="two-col">
+          <div class="field"><label for="display-name">ชื่อที่ใช้เรียก <span class="required">*</span></label><input id="display-name" name="displayName" autocomplete="name" required placeholder="เช่น BooM"></div>
+          <div class="field"><label for="contact">ชื่อ LINE ที่ใช้ติดต่อ <span class="required">*</span></label><input id="contact" name="contact" required placeholder="เช่น @ชื่อ LINE"></div>
+        </div>
+        <div class="field"><label for="question">หัวข้อหรือคำถามที่ต้องการดู <span class="required">*</span></label><textarea id="question" name="question" required placeholder="เล่าเรื่องที่อยากให้ช่วยอ่านพอสังเขป"></textarea></div>
+        <div class="two-col">
+          <div class="field"><label for="delivery-type">ช่องทางให้ส่งคำทำนาย</label><select id="delivery-type" name="deliveryType"><option>ข้อความ</option><option>เสียง</option><option>วิดีโอ</option></select></div>
+          <div class="field"><label for="addons">บริการเสริม</label><input id="addons" name="addons" placeholder="เช่น คิวเร่ง / วิดีโอ"></div>
+        </div>
+        <label class="check"><input id="consent" name="consent" type="checkbox" required><span>ฉันอ่านข้อตกลงก่อนจองและเข้าใจว่าการส่งฟอร์มเป็นเพียงคำขอรับคิว <span class="required">*</span></span></label>
+        <div class="error" id="form-error" role="alert" aria-live="polite"></div>
+        <div class="submit-row"><button type="submit">ส่งคำขอรับคิว ↗</button></div>
+        <div class="success" id="success" role="status" aria-live="polite"><strong>รับคำขอแล้ว — <span id="booking-code"></span></strong><p>สถานะตอนนี้คือ “รอตรวจสอบ” BooM จะยืนยันคิวและรายละเอียดเพิ่มเติมผ่านช่องทางติดต่อที่แจ้งไว้</p></div>
+      </form>
+
+      <aside class="summary-card">
+        <h2>สรุปคำขอ</h2>
+        <p class="summary-note">ข้อมูลจะอัปเดตตามที่กรอก โดยยังไม่ส่งเข้าฐานข้อมูลจริงใน Prototype นี้</p>
+        <ul class="summary-list">
+          <li><span>แพ็กเกจ</span><span id="summary-package">ยังไม่ได้เลือก</span></li>
+          <li><span>รูปแบบ</span><span id="summary-mode">ยังไม่ได้เลือก</span></li>
+          <li><span>นัดหมาย</span><span id="summary-time">—</span></li>
+          <li><span>สถานะเริ่มต้น</span><span>รอตรวจสอบ</span></li>
+        </ul>
+        <p class="summary-foot">หลังต่อ Backend แล้ว ข้อมูลชุดนี้จะถูกแปลงเป็นรายการใน Reading Queue Database</p>
+      </aside>
+    </section>
+  </main>
+  <footer><div class="shell">© Turboztarot168 Reading Studio · Booking form prototype / Local-first</div></footer>
+
+  <script>
+    const form = document.getElementById('booking-form');
+    const callFields = document.getElementById('call-fields');
+    const asyncFields = document.getElementById('async-fields');
+    const date = document.getElementById('appointment-date');
+    const time = document.getElementById('appointment-time');
+    const error = document.getElementById('form-error');
+    const success = document.getElementById('success');
+    const code = document.getElementById('booking-code');
+    const packageInput = document.getElementById('package');
+    const summaryPackage = document.getElementById('summary-package');
+    const summaryMode = document.getElementById('summary-mode');
+    const summaryTime = document.getElementById('summary-time');
+
+    function selectedMode() { return packageInput.selectedOptions[0]?.dataset.mode || ''; }
+    async function loadPackages() {
+      try {
+        const response = await fetch('/api/packages', { cache: 'no-store' });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || 'โหลดรายการแพ็กเกจไม่สำเร็จ');
+        packageInput.innerHTML = '<option value="">เลือกแพ็กเกจ</option>';
+        payload.groups.forEach((group) => {
+          const optgroup = document.createElement('optgroup');
+          optgroup.label = group.label;
+          group.items.forEach((item) => {
+            const option = document.createElement('option');
+            option.value = item.name;
+            option.textContent = item.name;
+            option.dataset.mode = group.kind === 'call-pack' ? 'call' : 'async';
+            optgroup.appendChild(option);
+          });
+          if (optgroup.children.length) packageInput.appendChild(optgroup);
+        });
+        refreshSummary();
+      } catch (loadError) {
+        packageInput.innerHTML = '<option value="">โหลดแพ็กเกจไม่สำเร็จ</option>';
+        error.textContent = loadError.message;
+      }
+    }
+    function refreshMode() {
+      const mode = selectedMode();
+      const isCall = mode === 'call';
+      callFields.classList.toggle('visible', isCall);
+      asyncFields.classList.toggle('visible', mode === 'async');
+      date.required = isCall;
+      time.required = isCall;
+      summaryMode.textContent = isCall ? 'Call' : mode === 'async' ? 'ส่งงานตามคิว' : 'ยังไม่ได้เลือก';
+      summaryTime.textContent = isCall && date.value && time.value ? `${date.value} · ${time.value} น.` : mode === 'async' ? 'ตามกำหนดส่ง' : '—';
+    }
+    function refreshSummary() {
+      summaryPackage.textContent = packageInput.value || 'ยังไม่ได้เลือก';
+      refreshMode();
+    }
+    packageInput.addEventListener('change', refreshSummary);
+    [packageInput, date, time].forEach((input) => input.addEventListener('input', refreshSummary));
+    refreshSummary();
+    loadPackages();
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      error.textContent = '';
+      success.classList.remove('visible');
+      refreshSummary();
+      if (!form.checkValidity()) {
+        error.textContent = 'กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบ และเลือกวิธีรับบริการ';
+        form.reportValidity();
+        return;
+      }
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.packageName = data.package;
+      data.serviceMode = selectedMode();
+      delete data.package;
+      data.consent = document.getElementById('consent').checked;
+      try {
+        const response = await fetch('/api/queue', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || 'บันทึกข้อมูลไม่สำเร็จ');
+        code.textContent = payload.booking.bookingCode;
+        success.classList.add('visible');
+        form.querySelector('button[type="submit"]').disabled = true;
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (submitError) {
+        error.textContent = submitError.message;
+      }
+    });
+  </script>
+</body>
+</html>
