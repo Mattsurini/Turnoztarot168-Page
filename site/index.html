@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="th"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="เลือกแพ็กเกจการอ่านไพ่ของ Turboztarot168 แล้วจองคิวผ่าน LINE OA">
+  <title>Turboztarot168 — Reading Booking</title>
+  <style>
+    @font-face { font-family: "Superstore"; src: url("https://techsauce.co/font/Superstore-Regular.woff2") format("woff2"); font-style: normal; font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Superstore"; src: url("https://techsauce.co/font/Superstore-Bold.woff") format("woff"); font-style: normal; font-weight: 700; font-display: swap; }
+    :root {
+      --ivory: #f6f1e8;
+      --paper: #fffdf8;
+      --ink: #292522;
+      --muted: #766e67;
+      --line: #d8cec1;
+      --terracotta: #bd684a;
+      --terracotta-dark: #8f4935;
+      --clay: #e8b39c;
+      --sage: #a7b09d;
+      --yellow: #e5c46b;
+      --blue: #b9cbd0;
+      --shadow: 0 16px 40px rgba(67, 49, 38, .08);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+       --serif: "Superstore", "Noto Sans Thai", sans-serif;
+       --sans: "Superstore", "Noto Sans Thai", "Leelawadee UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--ivory); color: var(--ink); font-family: var(--sans); line-height: 1.65; }
+    a { color: inherit; }
+    .wrap { width: min(1160px, calc(100% - 36px)); margin: auto; }
+    header { padding: 24px 0; border-bottom: 1px solid rgba(216,206,193,.75); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: .03em; }
+    .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--terracotta); color: #fffaf2; font-family: var(--serif); font-size: 20px; }
+    .nav-links { display: flex; gap: 22px; color: var(--muted); font-size: 14px; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--terracotta-dark); text-decoration: underline; text-underline-offset: 4px; }
+    .button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: #fffdf8; text-decoration: none; font-weight: 700; font-size: 14px; cursor: pointer; transition: transform .2s ease, background .2s ease; }
+    .button:hover, .button:focus-visible { transform: translateY(-2px); background: var(--terracotta-dark); }
+    .button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    .button.secondary:hover, .button.secondary:focus-visible { background: var(--paper); }
+    .eyebrow { margin: 0 0 14px; color: var(--terracotta-dark); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 500; line-height: 1.35; letter-spacing: 0; }
+    h1 { font-size: clamp(48px, 8vw, 94px); max-width: 760px; }
+    h2 { font-size: clamp(34px, 5vw, 58px); }
+    h3 { font-size: 26px; }
+    .hero { padding: 82px 0 48px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 30px; align-items: end; }
+    .hero-copy p { max-width: 560px; color: var(--muted); font-size: 18px; margin: 26px 0 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-note { padding: 28px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--paper); box-shadow: var(--shadow); transform: rotate(1.2deg); }
+    .hero-note .quote { font-family: var(--serif); font-size: 27px; line-height: 1.25; }
+    .hero-note small { display: block; margin-top: 22px; color: var(--muted); }
+    .section { padding: 58px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+    .section-head p { max-width: 430px; color: var(--muted); margin: 0; }
+    .package-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .package { min-height: 250px; padding: 26px; border: 1px solid rgba(41,37,34,.16); border-radius: var(--radius-lg); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 20px rgba(67,49,38,.04); transition: transform .2s ease, box-shadow .2s ease; }
+    .package:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .package:nth-child(1) { grid-column: span 7; background: var(--clay); }
+    .package:nth-child(2) { grid-column: span 5; background: var(--sage); }
+    .package:nth-child(3) { grid-column: span 5; background: var(--yellow); }
+    .package:nth-child(4) { grid-column: span 7; background: var(--blue); }
+    .package p { max-width: 400px; margin: 12px 0; }
+    .package .eyebrow { color: var(--ink); }
+    .package .meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; font-size: 13px; }
+    .package .price { font-weight: 800; }
+    .package .button { background: transparent; color: var(--ink); border-color: rgba(41,37,34,.5); }
+    .package .button:hover, .package .button:focus-visible { background: rgba(255,253,248,.55); }
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .step { padding: 24px 20px 28px 0; margin-right: 20px; border-right: 1px solid var(--line); }
+    .step:last-child { border-right: 0; margin-right: 0; }
+    .step-num { color: var(--terracotta-dark); font-family: var(--serif); font-size: 32px; }
+    .step h3 { font-family: var(--sans); font-size: 17px; font-weight: 800; margin-top: 10px; }
+    .step p { margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+    .rules { display: grid; grid-template-columns: .8fr 1.2fr; gap: 36px; align-items: start; }
+    .rules-intro p { color: var(--muted); }
+    .rule-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .rule-list li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    .rule-list b { color: var(--terracotta-dark); }
+    .status { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .status-card { padding: 28px; border: 1px solid var(--line); background: var(--paper); border-radius: var(--radius-lg); }
+    .status-card p { color: var(--muted); }
+    .cta { margin: 36px 0 70px; padding: 42px; border-radius: var(--radius-lg); background: var(--ink); color: #fffdf8; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .cta h2 { max-width: 580px; }
+    .cta p { color: #d9d0c6; margin: 12px 0 0; }
+    .cta .button { background: var(--clay); color: var(--ink); border-color: var(--clay); }
+    footer { padding: 24px 0 40px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+    .modal { position: fixed; inset: 0; display: none; place-items: center; padding: 18px; background: rgba(41,37,34,.45); z-index: 10; }
+    .modal.open { display: grid; }
+    .modal-box { width: min(560px, 100%); max-height: 90vh; overflow: auto; padding: 30px; border-radius: var(--radius-lg); background: var(--paper); box-shadow: 0 24px 70px rgba(0,0,0,.2); }
+    .modal-top { display: flex; justify-content: space-between; gap: 18px; align-items: start; }
+    .close { border: 0; background: transparent; font-size: 28px; cursor: pointer; color: var(--muted); }
+    .modal-box ul { padding-left: 20px; color: var(--muted); }
+    .draft { display: inline-block; margin-top: 8px; padding: 4px 9px; border-radius: 99px; background: rgba(255,255,255,.45); color: var(--terracotta-dark); font-size: 11px; font-weight: 800; }
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 56px; }
+      .hero-note { transform: none; }
+      .package:nth-child(n) { grid-column: span 12; min-height: 220px; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .step:nth-child(2) { border-right: 0; }
+      .rules, .status { grid-template-columns: 1fr; }
+      .cta { align-items: start; flex-direction: column; padding: 30px; }
+    }
+    @media (max-width: 480px) {
+      .wrap { width: min(100% - 26px, 1160px); }
+      .hero-copy p { font-size: 16px; }
+      .flow { grid-template-columns: 1fr; }
+      .step { border-right: 0; border-bottom: 1px solid var(--line); margin: 0; padding-right: 0; }
+      .step:last-child { border-bottom: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+    /* Ferrari direction: preserve the existing layout, update the visual system. */
+    :root { --ivory:#181818; --paper:#303030; --ink:#fff; --muted:#969696; --line:#303030; --terracotta:#da291c; --terracotta-dark:#9d2211; --clay:#da291c; --sage:#303030; --yellow:#303030; --blue:#303030; --shadow:0 4px 8px rgba(0,0,0,.1); --radius-lg:0; --radius-md:0; }
+    body { background:var(--ivory); color:var(--ink); }
+    header { background:var(--ivory); border-bottom-color:var(--line); }
+    .brand-mark { border-radius:0; background:var(--terracotta); color:#fff; }
+    .nav-links { color:var(--muted); }
+    .nav-links a:hover, .nav-links a:focus-visible { color:var(--ink); }
+    .button { min-height:48px; padding:14px 24px; border-radius:0; border-color:var(--terracotta); background:var(--terracotta); color:#fff; letter-spacing:1.1px; text-transform:uppercase; }
+    .button:hover, .button:focus-visible { background:#9d2211; }
+    .button.secondary { background:transparent; color:var(--ink); border-color:#888; }
+    .button.secondary:hover, .button.secondary:focus-visible { background:var(--paper); }
+    .eyebrow { color:var(--terracotta); letter-spacing:1.1px; }
+    h1, h2, h3 { letter-spacing:-.36px; }
+    .hero-copy p, .section-head p, .step p, .rules-intro p, .status-card p { color:var(--muted); }
+    .hero-note { border-color:var(--line); border-radius:0; background:var(--paper); box-shadow:none; }
+    .hero-note small { color:var(--muted); }
+    .package { border-color:var(--line); border-radius:0; box-shadow:none; }
+    .package:nth-child(1), .package:nth-child(2), .package:nth-child(3), .package:nth-child(4) { background:var(--paper); }
+    .package:hover { background:#3a3a3a; box-shadow:var(--shadow); }
+    .package .eyebrow { color:var(--terracotta); }
+    .package .button { background:transparent; color:var(--ink); border-color:#888; }
+    .package .button:hover, .package .button:focus-visible { background:var(--terracotta); border-color:var(--terracotta); color:#fff; }
+    .step-num, .rule-list b { color:var(--terracotta); }
+    .status-card { border-color:var(--line); border-radius:0; background:var(--paper); }
+    .cta { border-radius:0; background:var(--terracotta); color:#fff; }
+    .cta p { color:rgba(255,255,255,.78); }
+    .cta .button { background:#fff; color:var(--ivory); border-color:#fff; }
+    .cta .button:hover, .cta .button:focus-visible { background:#ebebeb; }
+    footer { background:var(--ivory); border-top-color:var(--line); color:var(--muted); }
+    .modal { background:rgba(0,0,0,.72); }
+    .modal-box { border-radius:0; background:var(--paper); box-shadow:none; }
+    .close { color:var(--muted); }
+    .modal-box ul { color:var(--muted); }
+    .draft { border-radius:999px; background:#484848; color:#fff; }
+    .package:nth-child(5){grid-column:span 5;background:var(--paper)}
+    @media (max-width:800px){.package:nth-child(5){grid-column:span 12}}
+    .package[data-od-id="package-card-deep"]{order:4;grid-column:span 7}
+    .package[data-od-id="package-card-call"]{order:5;grid-column:1 / -1}
+    .package-grid{gap:18px;align-items:stretch}
+    .package{position:relative;min-height:285px;padding:30px;border-color:#464646;box-shadow:0 10px 24px rgba(0,0,0,.16);overflow:hidden}
+    .package::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--terracotta);opacity:.9}
+    .package:hover{border-color:#777;box-shadow:0 16px 30px rgba(0,0,0,.24)}
+    .package[data-od-id="package-card-call"]{min-height:220px;background:#232323}
+    .package[data-od-id="package-card-call"] h3{font-size:34px}
+    .package-grid{grid-template-columns:repeat(14,minmax(0,1fr))}
+    .package[data-od-id="package-card-qa"]{grid-column:1 / span 6;grid-row:1 / span 2;min-height:100%}
+    .package[data-od-id="package-card-special"]{grid-column:7 / span 4;grid-row:1}
+    .package[data-od-id="package-card-call"]{grid-column:11 / span 4;grid-row:1;min-height:285px}
+    .package[data-od-id="package-card-relationship"]{grid-column:7 / span 4;grid-row:2}
+    .package[data-od-id="package-card-deep"]{grid-column:11 / span 4;grid-row:2;min-height:285px}
+    @media (max-width:800px){.package[data-od-id="package-card-call"]{grid-column:span 12;min-height:260px}}
+    @media (max-width:800px){.package-grid{grid-template-columns:1fr}.package[data-od-id]{grid-column:1;grid-row:auto;min-height:260px}}
+    .package-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+    .package[data-od-id="package-card-qa"]{grid-column:1 / span 4;grid-row:1;min-height:285px}
+    .package[data-od-id="package-card-relationship"]{grid-column:5 / span 4;grid-row:1;min-height:285px}
+    .package[data-od-id="package-card-special"]{grid-column:9 / span 4;grid-row:1;min-height:285px}
+    .package[data-od-id="package-card-call"]{grid-column:1 / span 8;grid-row:2;min-height:285px}
+    .package[data-od-id="package-card-deep"]{grid-column:9 / span 4;grid-row:2;min-height:285px}
+    @media (max-width:800px){.package-grid{grid-template-columns:1fr}.package[data-od-id]{grid-column:1;grid-row:auto;min-height:260px}}
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+Thai:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+  <header data-od-id="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Turboztarot168 home"><span class="brand-mark">T</span><span>Turboztarot168</span></a>
+      <nav class="nav-links" aria-label="หลัก" data-od-id="main-nav"><a href="#packages">แพ็กเกจ</a><a href="#process">วิธีจอง</a><a href="#rules">ข้อตกลง</a><a href="#status">สถานะคิว</a></nav>
+      <a class="button" data-od-id="cta-line-booking" href="https://line.me/R/ti/p/@330dvugn" target="_blank" rel="noopener" style="margin-top: 0px; gap: 8px; padding: 11px 20px 11px 29px;">จองคิวผ่าน LineOA</a>
+    </div>
+  </header>
+  <main id="top">
+    <section class="wrap hero" data-od-id="hero-section">
+      <div class="hero-copy">
+        <p class="eyebrow">Reading booking / Turboztarot168</p>
+        <h1>ตั้งคำถามให้ชัด แล้วค่อยเปิดไพ่</h1>
+        <p>การดูดวงที่ดีเริ่มจากเรื่องที่คุณอยากรู้ เลือกแพ็กเกจที่ตรงกับคำถาม อ่านข้อตกลงติดต่อเทอร์โบได้ที่ LineOA เพื่อจองคิว</p>
+        <div class="hero-actions"><a class="button secondary" href="#packages">ดูแพ็กเกจ</a><a class="button secondary" href="#rules">อ่านข้อตกลงก่อน</a></div>
+      </div>
+      <aside class="hero-note"><div class="quote">“ยิ่งเล่าเท่าไหร่ คำทำนายก็ยิ่งเป็นของคุณมากขึ้น”</div><small>ก่อนจอง: เตรียมคำถามและเรื่องราวที่อยากให้ไพ่ช่วยส่อง</small></aside>
+    </section>
+    <section class="wrap section" id="packages" data-od-id="packages-section">
+      <div class="section-head"><div><p class="eyebrow">Choose your reading</p><h2>แพ็กเกจที่ตรงกับเรื่องของคุณ</h2></div></div>
+      <div class="package-grid">
+        <article class="package" data-od-id="package-card-qa"><div><p class="eyebrow">01 / focused questions</p><h3>Q&amp;A Pack</h3><p style="margin-top:0">สำหรับคำถามที่เจาะจงและต้องการคำตอบเป็นเรื่องๆ ไม่เหมาะกับการถามภาพรวมกว้างๆ</p></div><div class="meta"><a class="button" href="q-and-a.html" data-od-id="path-1-1-1-0-1-0">ดูรายละเอียด</a></div></article>
+        <article class="package" data-od-id="package-card-relationship"><div><p class="eyebrow">02 / connection</p><h3>Relationship Pack</h3><p>สำหรับเรื่องความสัมพันธ์และคำถามที่ต้องอ่านระหว่างคนสองคน</p></div><div class="meta"><a class="button" href="relationship-package.html" data-od-id="path-1-1-1-1-1-0">ดูรายละเอียด</a></div></article>
+        <article class="package" data-od-id="package-card-special"><div><p class="eyebrow">03 / special lens</p><h3>Special Pack</h3><p>แพ็กเกจสำหรับหัวข้อเฉพาะที่ต้องใช้รูปแบบการอ่านหรือจำนวนคำถามต่างจากแพ็กเกจทั่วไป</p></div><div class="meta"><a class="button" href="special-pack.html">ดูรายละเอียด</a></div></article>
+        <article class="package" data-od-id="package-card-call"><div><p class="eyebrow">04 / live guidance</p><h3>Call Pack</h3><p>แพ็กเกจสำหรับดูดวงไม่อั้นและปรึกษาแบบโทรตัวต่อตัว</p></div><div class="meta"><a class="button" href="call-pack.html">ดูรายละเอียด</a></div></article>
+        
+        <article class="package" data-od-id="package-card-deep"><div><p class="eyebrow">05 / deeper context</p><h3>Deep Reading</h3><p>สำหรับการดูภาพรวมและประเด็นที่อยากรู้และมีความละเอียดมากกว่าแพ็กเกจถามตอบทั่วไป</p></div><div class="meta"><a class="button" href="deep-reading.html">ดูรายละเอียด</a></div></article>
+      </div>
+    </section>
+    <section class="wrap section" id="process" data-od-id="process-section">
+      <div class="section-head"><div><p class="eyebrow">How booking works</p><h2>จองคิวแบบไม่ต้องกรอกฟอร์มยาว</h2></div></div>
+      <div class="flow"><div class="step"><span class="step-num">01</span><h3>เลือกแพ็กเกจ</h3><p>เลือกจากประเภทคำถาม ไม่ใช่เลือกจากชื่อที่ฟังดูสวย</p></div><div class="step"><span class="step-num">02</span><h3>เตรียมคำถาม</h3><p>เล่าเรื่องราวให้พอเห็นเรื่องเดียวกันก่อนเปิดไพ่</p></div><div class="step"><span class="step-num">03</span><h3>ทัก LineOA</h3><p>แจ้งชื่อแพ็กเกจและส่งคำถามเพื่อคุยคิว</p></div><div class="step"><span class="step-num">04</span><h3>รับคำทำนาย</h3><p>รูปแบบเสียง รูปภาพ หรือข้อความตามความเหมาะสมของเคส</p></div></div>
+    </section>
+    <section class="wrap section" id="rules" data-od-id="rules-section">
+      <div class="rules"><div class="rules-intro"><p class="eyebrow">Before you book</p><h2>ข้อตกลงที่ทำให้การอ่านตรงกัน</h2><p>อ่านก่อนจอง เพื่อให้แพ็กเกจ คำถาม และความคาดหวังอยู่ในขอบเขตเดียวกัน</p><a class="button secondary" href="agreement.html">อ่านข้อตกลงก่อนจอง</a></div><ol class="rule-list"><li><b>01</b><span>ไม่รับอ่านบางหัวข้อ เช่น สุขภาพ เด็ก เพศเด็ก การปรักปรัมผู้อื่น และ การตัดสินผู้อื่นแบบผิดๆ</span></li><li><b>02</b><span>แพ็กเกจถามตอบและแพ็กเกจเจาะลึกต้องเล่าเรื่องเกี่ยวกับคำถามที่อยากรู้</span></li><li><b>03</b><span>คำถามควรเจาะจงและชัดเจน คำถามกว้างจะได้คำตอบกว้าง</span></li><li><b>04</b><span>ไพ่ไม่ได้บอกเวลาได้อยากชัดเจน หากต้องการเวลาที่แน่นอนรบกวนระบุให้ชัดเจน</span></li><li><b>05</b><span>คำทำนายอาจเป็นไฟล์เสียง รูปภาพ หรือข้อความตามความสะดวกของผู้เปิดไพ่</span></li><li><b>06</b><span>คิวเร่งและวิดีโอเป็นบริการเสริม คิดเพิ่มแยกจากแพ็กเกจหลัก</span></li></ol></div>
+    </section>
+    <section class="wrap section" id="status" data-od-id="status-section"><div class="status"><div class="status-card" data-od-id="status-card-queue"><p class="eyebrow">Reading status</p><h3>เช็กสถานะคิว</h3><p>หลังยืนยันคิวแล้ว ใช้ลิงก์สถานะที่ Turboztarot168 ส่งให้เพื่อตรวจความคืบหน้า</p><a class="button secondary" href="reading-status.html">เปิด Reading Status</a></div><div class="status-card" data-od-id="status-card-addons"><p class="eyebrow">Add-ons</p><h3>ต้องการคิวเร่งหรือวิดีโอ?</h3><p>แจ้งใน LINE OA ก่อนชำระเงิน เพื่อให้เช็กคิวและค่าใช้จ่ายเพิ่มเติมได้ถูกต้อง</p><a class="button secondary" href="https://line.me/R/ti/p/@330dvugn" target="_blank" rel="noopener">LineOA</a></div></div></section>
+    <section class="wrap"><div class="cta" id="contact"><div><p class="eyebrow" style="color:var(--clay)">Ready when your question is ready</p><h2>เลือกแพ็กเกจแล้ว ทักมาได้เลย</h2><p>LineOA: @330dvugn — ส่งชื่อแพ็กเกจและคำถามที่อยากให้ช่วยอ่าน</p></div>      <a class="button" data-od-id="cta-line-booking-hero" href="https://line.me/R/ti/p/@330dvugn" target="_blank" rel="noopener">จองคิวผ่าน LineOA ↗</a></div></section>
+  </main>
+  <footer><div class="wrap">© Turboztarot168 Reading Studio · ข้อมูลแพ็กเกจและราคาเป็น draft จนกว่าจะยืนยันรายละเอียดจริง</div></footer>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-box"><div class="modal-top"><div><p class="eyebrow">Package detail</p><h2 id="modal-title">แพ็กเกจ</h2></div><button class="close" aria-label="ปิด" id="close-modal">×</button></div><span class="draft">โครงร่างรอข้อมูลจริง</span><ul><li>รูปแบบคำทำนาย: เสียง / รูปภาพ / ข้อความ ตามความเหมาะสม</li><li>ระยะเวลารอผล: 1-2 วันนับจากที่ลงคิว</li><li>บริการเสริม: คิวเร่ง / วิดีโอ หากมี</li></ul><a class="button" href="q-and-a.html">ดูรายละเอียดเพิ่มเติม</a></div></div>
+  <script>
+    const modal = document.getElementById('modal');
+    const title = document.getElementById('modal-title');
+    function openModal(pkg) { title.textContent = pkg; modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+    document.querySelectorAll('[data-package]').forEach((button) => button.addEventListener('click', () => openModal(button.dataset.package)));
+    document.getElementById('close-modal').addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeModal(); });
+  </script>
+
+
+
+
+</body></html>
