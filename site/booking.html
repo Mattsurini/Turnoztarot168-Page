@@ -143,7 +143,7 @@
           </div>
           <p class="slot-status" id="slot-status" role="status" aria-live="polite"></p>
         </div>
-        <div class="two-col">
+        <div class="two-col" id="async-options">
           <div class="field"><label for="delivery-type">ช่องทางให้ส่งคำทำนาย</label><select id="delivery-type" name="deliveryType"><option>ข้อความ</option><option>เสียง</option><option>วิดีโอ</option></select></div>
           <div class="field"><label for="addons">บริการเสริม</label><input id="addons" name="addons" placeholder="เช่น คิวเร่ง / วิดีโอ"></div>
         </div>
@@ -176,6 +176,9 @@
     const time = document.getElementById('appointment-time');
     const questionField = document.getElementById('question-field');
     const question = document.getElementById('question');
+    const asyncOptions = document.getElementById('async-options');
+    const deliveryType = document.getElementById('delivery-type');
+    const addons = document.getElementById('addons');
     const slotStatus = document.getElementById('slot-status');
     const error = document.getElementById('form-error');
     const success = document.getElementById('success');
@@ -221,6 +224,9 @@
       questionField.hidden = isCall;
       question.required = !isCall;
       question.disabled = isCall;
+      asyncOptions.hidden = isCall;
+      deliveryType.disabled = isCall;
+      addons.disabled = isCall;
       date.required = isCall;
       time.required = isCall;
       if (!isCall) {
