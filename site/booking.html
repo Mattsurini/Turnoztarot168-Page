@@ -207,6 +207,7 @@
             option.value = item.name;
             option.textContent = item.name;
             option.dataset.mode = group.kind === 'call-pack' ? 'call' : 'async';
+            option.dataset.kind = group.kind;
             optgroup.appendChild(option);
           });
           if (optgroup.children.length) packageInput.appendChild(optgroup);
@@ -291,6 +292,7 @@
       }
       const data = Object.fromEntries(new FormData(form).entries());
       data.packageName = data.package;
+      data.packageKind = packageInput.selectedOptions[0]?.dataset.kind || '';
       data.serviceMode = selectedMode();
       delete data.package;
       data.consent = document.getElementById('consent').checked;
