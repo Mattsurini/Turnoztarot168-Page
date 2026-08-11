@@ -8,6 +8,15 @@ function isProtectedAdminRequest(request) {
   return false;
 }
 
+function safeEqual(actual, expected) {
+  const left = String(actual || "");
+  const right = String(expected || "");
+  let mismatch = left.length ^ right.length;
+  const length = Math.max(left.length, right.length);
+  for (let index = 0; index < length; index += 1) mismatch |= (left.charCodeAt(index) || 0) ^ (right.charCodeAt(index) || 0);
+  return mismatch === 0;
+}
+
 function unauthorized(message = "Authentication required") {
   return new NextResponse(message, {
     status: 401,
@@ -39,7 +48,7 @@ export function proxy(request) {
     const separator = decoded.indexOf(":");
     const username = decoded.slice(0, separator);
     const password = decoded.slice(separator + 1);
-    if (separator < 0 || username !== expectedUser || password !== expectedPassword) return unauthorized("Invalid credentials");
+    if (separator < 0 || !safeEqual(username, expectedUser) || !safeEqual(password, expectedPassword)) return unauthorized("Invalid credentials");
   } catch {
     return unauthorized("Invalid credentials");
   }

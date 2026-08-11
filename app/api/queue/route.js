@@ -2,10 +2,8 @@ import { NextResponse } from "next/server";
 import { checkCallAvailability, createBooking, listBookings } from "../../../lib/queue-store";
 import { isBangkokFutureSlot } from "../../../lib/call-slots";
 import { notifyHanbiQueueCreated } from "../../../lib/hanbi-notify";
-
-const required = ["packageName", "serviceMode", "displayName", "contact"];
-
-function clean(value) { return typeof value === "string" ? value.trim() : ""; }
+import { resolveCatalogPackage } from "../../../lib/notion";
+import { validateBookingInput } from "../../../lib/booking-validation";
 
 export async function GET(request) {
   const status = new URL(request.url).searchParams.get("status") || "";
@@ -16,12 +14,8 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const input = Object.fromEntries(Object.entries(body).map(([key, value]) => [key, key === "consent" ? Boolean(value) : clean(value)]));
-    const missing = required.filter((key) => !input[key]);
-    if (missing.length) return NextResponse.json({ error: `Missing fields: ${missing.join(", ")}` }, { status: 400 });
-    if (!['call', 'async'].includes(input.serviceMode)) return NextResponse.json({ error: "Invalid service mode" }, { status: 400 });
-    if (input.serviceMode === "async" && !input.question) return NextResponse.json({ error: "กรุณากรอกหัวข้อหรือคำถามที่ต้องการดู" }, { status: 400 });
-    if (!input.consent) return NextResponse.json({ error: "Consent is required" }, { status: 400 });
+    const catalogEntry = await resolveCatalogPackage(body?.packageName, body?.packageKind);
+    const input = validateBookingInput(body, catalogEntry);
     if (input.serviceMode === "call") {
       if (!input.appointmentDate || !input.appointmentTime) {
         return NextResponse.json({ error: "กรุณาเลือกวันและเวลาสำหรับ Call" }, { status: 400 });
@@ -45,6 +39,9 @@ export async function POST(request) {
     }
     return NextResponse.json({ booking, notification }, { status: 201 });
   } catch (error) {
+    if (error?.code === "INVALID_BOOKING") {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
     if (error?.code === "CALL_SLOT_UNAVAILABLE") {
       return NextResponse.json({ error: "เวลานี้มีคิว Call แล้ว กรุณาเลือกเวลาใหม่", code: error.code }, { status: 409 });
     }
