@@ -8,9 +8,6 @@ const required = ["packageName", "serviceMode", "displayName", "contact"];
 function clean(value) { return typeof value === "string" ? value.trim() : ""; }
 
 export async function GET(request) {
-  if (process.env.VERCEL === "1") {
-    return NextResponse.json({ error: "Not found" }, { status: 404, headers: { "Cache-Control": "no-store" } });
-  }
   const status = new URL(request.url).searchParams.get("status") || "";
   const items = await listBookings(status);
   return NextResponse.json({ items }, { headers: { "Cache-Control": "no-store" } });

@@ -2,14 +2,12 @@ import { NextResponse } from "next/server";
 import { getBooking, updateBooking } from "../../../../lib/queue-store";
 
 export async function GET(_request, { params }) {
-  if (process.env.VERCEL === "1") return NextResponse.json({ error: "Not found" }, { status: 404 });
   const booking = await getBooking((await params).bookingCode);
   if (!booking) return NextResponse.json({ error: "Booking not found" }, { status: 404 });
   return NextResponse.json({ booking }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export async function PATCH(request, { params }) {
-  if (process.env.VERCEL === "1") return NextResponse.json({ error: "Not found" }, { status: 404 });
   try {
     const bookingCode = (await params).bookingCode;
     if (!(await getBooking(bookingCode))) return NextResponse.json({ error: "Booking not found" }, { status: 404 });
