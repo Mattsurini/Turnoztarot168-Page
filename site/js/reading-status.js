@@ -8,7 +8,6 @@
     displayName: "ชื่อที่แสดง",
     packageName: "แพ็กเกจ",
     status: "สถานะ",
-    queueNumber: "ลำดับคิว",
     queueAcceptedDate: "วันที่รับเข้าคิว",
     deliveryDate: "กำหนดส่ง",
     lastUpdated: "อัปเดตล่าสุด",
