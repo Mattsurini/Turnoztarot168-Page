@@ -26,7 +26,8 @@
       --sans: "Superstore", "Noto Sans Thai", "Leelawadee UI", sans-serif;
     }
     * { box-sizing: border-box; }
-    html { background: var(--ivory); }
+    [hidden] { display: none !important; }
+    html { background: var(--ivory); scroll-behavior: smooth; }
     body { margin: 0; color: var(--ink); background: var(--ivory); font-family: var(--sans); line-height: 1.65; }
     .shell { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
     .topbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); }
