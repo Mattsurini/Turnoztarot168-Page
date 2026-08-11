@@ -88,6 +88,10 @@
     .success strong { display: block; margin-bottom: 5px; }
     .success p { margin: 0; color: #b7c8b8; font-size: 14px; }
     .error { min-height: 22px; margin-top: 12px; color: #ff8a7a; font-size: 14px; }
+    .slot-status { min-height: 22px; margin: 10px 0 0; font-size: 14px; }
+    .slot-status.checking { color: var(--muted); }
+    .slot-status.available { color: #9fd8a8; }
+    .slot-status.unavailable { color: #ff8a7a; }
     footer { padding: 22px 0 38px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
     @media (max-width: 780px) { .intro, .booking-layout { grid-template-columns: 1fr; } .promise { transform: none; } .summary-card { position: static; order: -1; } }
     @media (max-width: 520px) { .choice-grid, .two-col { grid-template-columns: 1fr; } .topbar { align-items: flex-start; } .back { padding-top: 8px; } .submit-row button { width: 100%; } }
@@ -121,10 +125,6 @@
         </div>
 
 
-        <div class="conditional" id="call-fields">
-          <p>เลือกวันและเวลาที่สะดวกสำหรับการ Call ระบบจะแสดงเป็นคำขอให้ BooM ตรวจสอบอีกครั้ง</p>
-          <div class="two-col"><div><label for="appointment-date">วันที่สะดวก <span class="required">*</span></label><input id="appointment-date" name="appointmentDate" type="date"></div><div><label for="appointment-time">เวลาที่สะดวก <span class="required">*</span></label><input id="appointment-time" name="appointmentTime" type="time"></div></div>
-        </div>
         <div class="conditional" id="async-fields">
           <p>ไม่ต้องเลือกวันนัด ระบบจะรับเข้าคิวและแจ้งวันที่คาดว่าจะได้รับคำทำนายหลังตรวจสอบข้อมูล</p>
         </div>
@@ -134,7 +134,15 @@
           <div class="field"><label for="display-name">ชื่อที่ใช้เรียก <span class="required">*</span></label><input id="display-name" name="displayName" autocomplete="name" required placeholder="เช่น BooM"></div>
           <div class="field"><label for="contact">ชื่อ LINE ที่ใช้ติดต่อ <span class="required">*</span></label><input id="contact" name="contact" required placeholder="เช่น @ชื่อ LINE"></div>
         </div>
-        <div class="field"><label for="question">หัวข้อหรือคำถามที่ต้องการดู <span class="required">*</span></label><textarea id="question" name="question" required placeholder="เล่าเรื่องที่อยากให้ช่วยอ่านพอสังเขป"></textarea></div>
+        <div class="field" id="question-field"><label for="question">หัวข้อหรือคำถามที่ต้องการดู <span class="required">*</span></label><textarea id="question" name="question" required placeholder="เล่าเรื่องที่อยากให้ช่วยอ่านพอสังเขป"></textarea></div>
+        <div class="conditional" id="call-fields">
+          <p>เลือกวันและเวลาที่สะดวก ระบบจะตรวจคิว Call ที่มีอยู่ก่อนส่งคำขอ</p>
+          <div class="two-col">
+            <div><label for="appointment-date">วันที่สะดวก <span class="required">*</span></label><input id="appointment-date" name="appointmentDate" type="date"></div>
+            <div><label for="appointment-time">เวลาที่สะดวก <span class="required">*</span></label><input id="appointment-time" name="appointmentTime" type="time" step="600"></div>
+          </div>
+          <p class="slot-status" id="slot-status" role="status" aria-live="polite"></p>
+        </div>
         <div class="two-col">
           <div class="field"><label for="delivery-type">ช่องทางให้ส่งคำทำนาย</label><select id="delivery-type" name="deliveryType"><option>ข้อความ</option><option>เสียง</option><option>วิดีโอ</option></select></div>
           <div class="field"><label for="addons">บริการเสริม</label><input id="addons" name="addons" placeholder="เช่น คิวเร่ง / วิดีโอ"></div>
@@ -147,18 +155,18 @@
 
       <aside class="summary-card">
         <h2>สรุปคำขอ</h2>
-        <p class="summary-note">ข้อมูลจะอัปเดตตามที่กรอก โดยยังไม่ส่งเข้าฐานข้อมูลจริงใน Prototype นี้</p>
+        <p class="summary-note">ข้อมูลสรุปจะอัปเดตตามที่กรอก และบันทึกเมื่อกดส่งคำขอ</p>
         <ul class="summary-list">
           <li><span>แพ็กเกจ</span><span id="summary-package">ยังไม่ได้เลือก</span></li>
           <li><span>รูปแบบ</span><span id="summary-mode">ยังไม่ได้เลือก</span></li>
           <li><span>นัดหมาย</span><span id="summary-time">—</span></li>
           <li><span>สถานะเริ่มต้น</span><span>รอตรวจสอบ</span></li>
         </ul>
-        <p class="summary-foot">หลังต่อ Backend แล้ว ข้อมูลชุดนี้จะถูกแปลงเป็นรายการใน Reading Queue Database</p>
+        <p class="summary-foot">การส่งฟอร์มเป็นคำขอรับคิว BooM จะตรวจสอบและยืนยันอีกครั้งผ่าน LINE</p>
       </aside>
     </section>
   </main>
-  <footer><div class="shell">© Turboztarot168 Reading Studio · Booking form prototype / Local-first</div></footer>
+  <footer><div class="shell">© Turboztarot168 Reading Studio · Booking Form</div></footer>
 
   <script>
     const form = document.getElementById('booking-form');
@@ -166,6 +174,9 @@
     const asyncFields = document.getElementById('async-fields');
     const date = document.getElementById('appointment-date');
     const time = document.getElementById('appointment-time');
+    const questionField = document.getElementById('question-field');
+    const question = document.getElementById('question');
+    const slotStatus = document.getElementById('slot-status');
     const error = document.getElementById('form-error');
     const success = document.getElementById('success');
     const code = document.getElementById('booking-code');
@@ -173,6 +184,9 @@
     const summaryPackage = document.getElementById('summary-package');
     const summaryMode = document.getElementById('summary-mode');
     const summaryTime = document.getElementById('summary-time');
+    let slotAvailable = null;
+    let availabilityRequest = 0;
+    date.min = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 
     function selectedMode() { return packageInput.selectedOptions[0]?.dataset.mode || ''; }
     async function loadPackages() {
@@ -204,8 +218,16 @@
       const isCall = mode === 'call';
       callFields.classList.toggle('visible', isCall);
       asyncFields.classList.toggle('visible', mode === 'async');
+      questionField.hidden = isCall;
+      question.required = !isCall;
+      question.disabled = isCall;
       date.required = isCall;
       time.required = isCall;
+      if (!isCall) {
+        slotAvailable = null;
+        slotStatus.textContent = '';
+        slotStatus.className = 'slot-status';
+      }
       summaryMode.textContent = isCall ? 'Call' : mode === 'async' ? 'ส่งงานตามคิว' : 'ยังไม่ได้เลือก';
       summaryTime.textContent = isCall && date.value && time.value ? `${date.value} · ${time.value} น.` : mode === 'async' ? 'ตามกำหนดส่ง' : '—';
     }
@@ -213,8 +235,36 @@
       summaryPackage.textContent = packageInput.value || 'ยังไม่ได้เลือก';
       refreshMode();
     }
-    packageInput.addEventListener('change', refreshSummary);
-    [packageInput, date, time].forEach((input) => input.addEventListener('input', refreshSummary));
+    async function checkSlotAvailability() {
+      const requestId = ++availabilityRequest;
+      slotAvailable = null;
+      if (selectedMode() !== 'call' || !packageInput.value || !date.value || !time.value) {
+        slotStatus.textContent = '';
+        slotStatus.className = 'slot-status';
+        return null;
+      }
+      slotStatus.textContent = 'กำลังตรวจสอบคิว Call…';
+      slotStatus.className = 'slot-status checking';
+      try {
+        const params = new URLSearchParams({ package: packageInput.value, date: date.value, time: time.value });
+        const response = await fetch(`/api/queue/availability?${params}`, { cache: 'no-store' });
+        const payload = await response.json();
+        if (requestId !== availabilityRequest) return null;
+        if (!response.ok) throw new Error(payload.error || 'ตรวจสอบเวลานัดไม่สำเร็จ');
+        slotAvailable = payload.available;
+        slotStatus.textContent = payload.message;
+        slotStatus.className = `slot-status ${payload.available ? 'available' : 'unavailable'}`;
+        return slotAvailable;
+      } catch (availabilityError) {
+        if (requestId !== availabilityRequest) return null;
+        slotAvailable = false;
+        slotStatus.textContent = availabilityError.message;
+        slotStatus.className = 'slot-status unavailable';
+        return false;
+      }
+    }
+    packageInput.addEventListener('change', () => { refreshSummary(); checkSlotAvailability(); });
+    [date, time].forEach((input) => input.addEventListener('input', () => { refreshSummary(); checkSlotAvailability(); }));
     refreshSummary();
     loadPackages();
 
@@ -224,8 +274,12 @@
       success.classList.remove('visible');
       refreshSummary();
       if (!form.checkValidity()) {
-        error.textContent = 'กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบ และเลือกวิธีรับบริการ';
+        error.textContent = 'กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบ';
         form.reportValidity();
+        return;
+      }
+      if (selectedMode() === 'call' && !(await checkSlotAvailability())) {
+        error.textContent = slotStatus.textContent || 'เวลานี้ไม่ว่าง กรุณาเลือกเวลาใหม่';
         return;
       }
       const data = Object.fromEntries(new FormData(form).entries());
