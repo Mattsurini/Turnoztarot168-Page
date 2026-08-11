@@ -171,6 +171,7 @@
     .package[data-od-id="package-card-call"]{grid-column:1 / span 8;grid-row:2;min-height:285px}
     .package[data-od-id="package-card-deep"]{grid-column:9 / span 4;grid-row:2;min-height:285px}
     @media (max-width:800px){.package-grid{grid-template-columns:1fr}.package[data-od-id]{grid-column:1;grid-row:auto;min-height:260px}}
+    .package[data-od-id="package-card-call"], .package[data-od-id="package-card-deep"] { background: #303030; border-color: #484848; box-shadow: none; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+Thai:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 </head>
@@ -210,7 +211,7 @@
     <section class="wrap section" id="rules" data-od-id="rules-section">
       <div class="rules"><div class="rules-intro"><p class="eyebrow">Before you book</p><h2>ข้อตกลงที่ทำให้การอ่านตรงกัน</h2><p>อ่านก่อนจอง เพื่อให้แพ็กเกจ คำถาม และความคาดหวังอยู่ในขอบเขตเดียวกัน</p><a class="button secondary" href="agreement.html">อ่านข้อตกลงก่อนจอง</a></div><ol class="rule-list"><li><b>01</b><span>ไม่รับอ่านบางหัวข้อ เช่น สุขภาพ เด็ก เพศเด็ก การปรักปรัมผู้อื่น และ การตัดสินผู้อื่นแบบผิดๆ</span></li><li><b>02</b><span>แพ็กเกจถามตอบและแพ็กเกจเจาะลึกต้องเล่าเรื่องเกี่ยวกับคำถามที่อยากรู้</span></li><li><b>03</b><span>คำถามควรเจาะจงและชัดเจน คำถามกว้างจะได้คำตอบกว้าง</span></li><li><b>04</b><span>ไพ่ไม่ได้บอกเวลาได้อยากชัดเจน หากต้องการเวลาที่แน่นอนรบกวนระบุให้ชัดเจน</span></li><li><b>05</b><span>คำทำนายอาจเป็นไฟล์เสียง รูปภาพ หรือข้อความตามความสะดวกของผู้เปิดไพ่</span></li><li><b>06</b><span>คิวเร่งและวิดีโอเป็นบริการเสริม คิดเพิ่มแยกจากแพ็กเกจหลัก</span></li></ol></div>
     </section>
-    <section class="wrap section" id="status" data-od-id="status-section"><div class="status"><div class="status-card" data-od-id="status-card-queue"><p class="eyebrow">Reading status</p><h3>เช็กสถานะคิว</h3><p>หลังยืนยันคิวแล้ว ใช้ลิงก์สถานะที่ Turboztarot168 ส่งให้เพื่อตรวจความคืบหน้า</p><a class="button secondary" href="reading-status.html">เปิด Reading Status</a></div><div class="status-card" data-od-id="status-card-addons"><p class="eyebrow">Add-ons</p><h3>ต้องการคิวเร่งหรือวิดีโอ?</h3><p>แจ้งใน LINE OA ก่อนชำระเงิน เพื่อให้เช็กคิวและค่าใช้จ่ายเพิ่มเติมได้ถูกต้อง</p><a class="button secondary" href="https://line.me/R/ti/p/@330dvugn" target="_blank" rel="noopener">LineOA</a></div></div></section>
+    <section class="wrap section" id="status" data-od-id="status-section"><div class="status"><div class="status-card" data-od-id="status-card-queue"><p class="eyebrow">Reading status</p><h3>เช็กสถานะคิว</h3><p>หลังยืนยันคิวแล้ว ใช้ลิงก์สถานะที่เทอร์โบส่งให้เพื่อตรวจความคืบหน้า</p><a class="button secondary" href="reading-status.html">เปิด Reading Status</a></div><div class="status-card" data-od-id="status-card-addons"><p class="eyebrow">Add-ons</p><h3>ต้องการคิวเร่งหรือวิดีโอ?</h3><p>แจ้งใน LINE OA ก่อนชำระเงิน เพื่อให้เช็กคิวและค่าใช้จ่ายเพิ่มเติมได้ถูกต้อง</p><a class="button secondary" href="https://line.me/R/ti/p/@330dvugn" target="_blank" rel="noopener">LineOA</a></div></div></section>
     <section class="wrap"><div class="cta" id="contact"><div><p class="eyebrow" style="color:var(--clay)">Ready when your question is ready</p><h2>เลือกแพ็กเกจแล้ว ทักมาได้เลย</h2><p>LineOA: @330dvugn — ส่งชื่อแพ็กเกจและคำถามที่อยากให้ช่วยอ่าน</p></div>      <a class="button" data-od-id="cta-line-booking-hero" href="https://line.me/R/ti/p/@330dvugn" target="_blank" rel="noopener">จองคิวผ่าน LineOA ↗</a></div></section>
   </main>
   <footer><div class="wrap">© Turboztarot168 Reading Studio · ข้อมูลแพ็กเกจและราคาเป็น draft จนกว่าจะยืนยันรายละเอียดจริง</div></footer>
@@ -225,6 +226,7 @@
     modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeModal(); });
   </script>
+
 
 
 
