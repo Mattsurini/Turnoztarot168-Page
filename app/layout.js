@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "BooM Reading Studio",
-  description: "BooM Reading Studio",
+  title: "Turboztarot168",
+  description: "Turboztarot168 — บริการอ่านไพ่และดูดวงออนไลน์",
 };
 
 export default function RootLayout({ children }) {

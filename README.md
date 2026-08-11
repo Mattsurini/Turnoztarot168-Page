@@ -1,4 +1,4 @@
-# BooM Reading Website
+# Turboztarot168 Website
 
 This client-facing website lane is isolated from `E:\Boom Project`.
 
@@ -7,7 +7,7 @@ This client-facing website lane is isolated from `E:\Boom Project`.
 - `site/` — production website files
 - `content/` — approved copy, package details, and booking rules
 - `assets/` — logo, photos, QR code, and other media
-- `design/` — BooM design tokens and visual references
+- `design/` — Turboztarot168 design tokens and visual references
 - `previews/` — screenshots and review exports
 
 ## Current prototype
