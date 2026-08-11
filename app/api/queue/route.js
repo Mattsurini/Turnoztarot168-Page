@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { checkCallAvailability, createBooking, listBookings } from "../../../lib/queue-store";
+import { checkCallAvailability, createBooking, listBookings, markBookingNotificationSent } from "../../../lib/queue-store";
 import { isBangkokFutureSlot } from "../../../lib/call-slots";
 import { notifyHanbiQueueCreated } from "../../../lib/hanbi-notify";
 import { resolveCatalogPackage } from "../../../lib/notion";
@@ -33,6 +33,11 @@ export async function POST(request) {
     let notification = { sent: false, skipped: true };
     try {
       notification = await notifyHanbiQueueCreated(booking);
+      if (notification.sent) {
+        await markBookingNotificationSent(booking);
+        booking.notificationSent = true;
+        notification.outboxMarked = true;
+      }
     } catch (notificationError) {
       console.error("Hanbi queue notification failed", notificationError);
       notification = { sent: false, skipped: false, reason: "Hanbi notification failed" };
