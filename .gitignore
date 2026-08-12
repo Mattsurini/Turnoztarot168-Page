@@ -13,3 +13,4 @@ data/*.sqlite-wal
 data/*.sqlite-shm
 .vercel
 .env*
+.wrangler/

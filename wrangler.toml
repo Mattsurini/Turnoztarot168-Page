@@ -1,0 +1,12 @@
+name = "boom-reading-queue"
+main = "cloudflare/worker.js"
+compatibility_date = "2026-08-11"
+
+[vars]
+QUEUE_BACKEND = "d1"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "boom-reading-queue"
+database_id = "a775a2b5-9da6-4cfe-b179-a93ff4784a8b"
+migrations_dir = "db/migrations"
