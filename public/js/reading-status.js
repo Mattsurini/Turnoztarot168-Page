@@ -4,7 +4,7 @@
 
   const API_URL = "/api/reading-status";
   const FIELD_LABELS = {
-    bookingCode: "รหัสจอง",
+    queueCode: "รหัสคิว",
     displayName: "ชื่อที่แสดง",
     packageName: "แพ็กเกจ",
     status: "สถานะ",
@@ -39,7 +39,7 @@
     resultFields.replaceChildren();
     Object.entries(FIELD_LABELS).forEach(([key, label]) => {
       const value = data[key];
-      if (value === null || value === undefined || value === "") return;
+      if (value === null || value === undefined || value === "" || key === "bookingCode") return;
       const dt = document.createElement("dt");
       const dd = document.createElement("dd");
       dt.textContent = label;
@@ -52,9 +52,9 @@
   async function lookup(code) {
     showLoading();
     try {
-      const response = await fetch(`${API_URL}?bookingCode=${encodeURIComponent(code)}`, { method: "GET", headers: { Accept: "application/json" } });
+      const response = await fetch(`${API_URL}?queueCode=${encodeURIComponent(code)}`, { method: "GET", headers: { Accept: "application/json" } });
       const data = await response.json();
-      if (response.status === 404) return showError("ไม่พบ Booking Code นี้ — กรุณาตรวจสอบรหัสอีกครั้ง หรือติดต่อ Turboztarot168 ทาง LINE OA");
+      if (response.status === 404) return showError("ไม่พบรหัสคิวนี้ — กรุณาตรวจสอบรหัสอีกครั้ง หรือติดต่อ Turboztarot168 ทาง LINE OA");
       if (!response.ok) return showError(data.error || "ไม่สามารถตรวจสอบสถานะได้ในขณะนี้");
       showResult(data);
     } catch (error) {
@@ -65,10 +65,10 @@
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
     const code = input.value.trim();
-    if (!code) return showError("กรุณากรอก Booking Code");
+    if (!code) return showError("กรุณากรอกรหัสคิว");
     lookup(code);
   });
 
-  const initialCode = new URLSearchParams(window.location.search).get("bookingCode");
+  const initialCode = new URLSearchParams(window.location.search).get("queueCode") || new URLSearchParams(window.location.search).get("bookingCode");
   if (initialCode) { input.value = initialCode; lookup(initialCode.trim()); }
 })();

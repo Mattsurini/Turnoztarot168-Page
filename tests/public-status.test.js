@@ -24,7 +24,7 @@ test("public booking confirmation excludes internal and customer fields", () => 
     queueNumber: 1001,
     internalNote: "private",
   });
-  assert.equal(result.bookingCode, "BR-260812-0123456789ABCDEF0123456789ABCDEF");
+  assert.equal(result.queueCode, "BR-1001");
   assert.equal(result.packagePrice, 49);
   for (const field of ["displayName", "contact", "question", "queueNumber", "internalNote"])
     assert.equal(Object.hasOwn(result, field), false);
