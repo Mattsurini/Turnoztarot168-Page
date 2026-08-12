@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { checkCallAvailability, createBooking, listBookings } from "../../../lib/queue-store";
+import { createD1Booking } from "../../../lib/d1-client";
 import { isBangkokFutureSlot } from "../../../lib/call-slots";
 
 import { resolveCatalogPackage } from "../../../lib/notion";
@@ -15,6 +16,10 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json();
+    if (process.env.QUEUE_BACKEND === "d1") {
+      const booking = await createD1Booking(body);
+      return NextResponse.json({ booking: publicBookingConfirmation(booking), notification: { sent: false, queued: true, channel: "d1-outbox" } }, { status: 201 });
+    }
     const catalogEntry = await resolveCatalogPackage(body?.packageName, body?.packageKind, body?.packageId);
     const input = validateBookingInput(body, catalogEntry);
     if (input.serviceMode === "call") {
