@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { checkCallAvailability, createBooking, listBookings, markBookingNotificationSent, updateBookingNotification } from "../../../lib/queue-store";
+import { checkCallAvailability, createBooking, listBookings } from "../../../lib/queue-store";
 import { isBangkokFutureSlot } from "../../../lib/call-slots";
-import { notifyHanbiQueueCreated } from "../../../lib/hanbi-notify";
+
 import { resolveCatalogPackage } from "../../../lib/notion";
 import { validateBookingInput } from "../../../lib/booking-validation";
 import { publicBookingConfirmation } from "../../../lib/public-status";
@@ -31,20 +31,7 @@ export async function POST(request) {
       input.question = "ขอนัด Call";
     }
     const booking = await createBooking(input);
-    let notification = { sent: false, skipped: true };
-    try {
-      await updateBookingNotification(booking, "sending");
-      notification = await notifyHanbiQueueCreated(booking);
-      if (notification.sent) {
-        await markBookingNotificationSent(booking);
-        booking.notificationSent = true;
-        notification.outboxMarked = true;
-      }
-    } catch (notificationError) {
-      await updateBookingNotification(booking, "failed").catch((stateError) => console.error("Unable to persist Hanbi failure state", stateError));
-      console.error("Hanbi queue notification failed", notificationError);
-      notification = { sent: false, skipped: false, reason: "Hanbi notification failed" };
-    }
+    const notification = { sent: false, queued: true, channel: "hanbi-outbox" };
     return NextResponse.json({ booking: publicBookingConfirmation(booking), notification }, { status: 201 });
   } catch (error) {
     if (error?.code === "INVALID_BOOKING") {
