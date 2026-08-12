@@ -87,6 +87,8 @@
     .success { display: none; margin-top: 18px; padding: 20px; border: 1px solid #49654d; border-radius: var(--radius-md); background: #26352c; }
     .success.visible { display: block; }
     .success strong { display: block; margin-bottom: 5px; }
+    .success strong #booking-code { display: inline-block; margin-top: 8px; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 13px; line-height: 1.45; letter-spacing: .02em; }
+    .copy-code { min-height: 34px; margin: 8px 0 0 8px; padding: 6px 10px; font-size: 12px; text-transform: none; letter-spacing: 0; vertical-align: middle; }
     .success p { margin: 0; color: #b7c8b8; font-size: 14px; }
     .error { min-height: 22px; margin-top: 12px; color: #ff8a7a; font-size: 14px; }
     .slot-status { min-height: 22px; margin: 10px 0 0; font-size: 14px; }
@@ -151,7 +153,7 @@
         <label class="check"><input id="consent" name="consent" type="checkbox" required><span>ฉันอ่านข้อตกลงก่อนจองและเข้าใจว่าการส่งฟอร์มเป็นเพียงคำขอรับคิว <span class="required">*</span></span></label>
         <div class="error" id="form-error" role="alert" aria-live="polite"></div>
         <div class="submit-row"><button type="submit">ส่งคำขอรับคิว ↗</button></div>
-        <div class="success" id="success" role="status" aria-live="polite"><strong>รับคำขอแล้ว — <span id="booking-code"></span></strong><p>สถานะตอนนี้คือ “รอตรวจสอบ” BooM จะยืนยันคิวและรายละเอียดเพิ่มเติมผ่านช่องทางติดต่อที่แจ้งไว้</p></div>
+        <div class="success" id="success" role="status" aria-live="polite"><strong>รับคำขอแล้ว<br><span id="booking-code"></span><button class="copy-code" id="copy-code" type="button">คัดลอกรหัส</button></strong><p>สถานะตอนนี้คือ “รอตรวจสอบ” BooM จะยืนยันคิวและรายละเอียดเพิ่มเติมผ่านช่องทางติดต่อที่แจ้งไว้</p></div>
       </form>
 
       <aside class="summary-card">
@@ -184,6 +186,7 @@
     const error = document.getElementById('form-error');
     const success = document.getElementById('success');
     const code = document.getElementById('booking-code');
+    const copyCode = document.getElementById('copy-code');
     const packageInput = document.getElementById('package');
     const summaryPackage = document.getElementById('summary-package');
     const summaryMode = document.getElementById('summary-mode');
@@ -302,12 +305,26 @@
         const response = await fetch('/api/queue', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
         const payload = await response.json();
         if (!response.ok) throw new Error(payload.error || 'บันทึกข้อมูลไม่สำเร็จ');
-        code.textContent = payload.booking.bookingCode;
+        const fullCode = payload.booking.bookingCode;
+        code.dataset.full = fullCode;
+        const parts = fullCode.split('-');
+        code.textContent = parts.length === 3 ? `${parts[0]}-${parts[1]}-${parts[2].slice(0, 4)}…${parts[2].slice(-4)}` : fullCode;
+        code.title = fullCode;
         success.classList.add('visible');
         form.querySelector('button[type="submit"]').disabled = true;
         success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } catch (submitError) {
         error.textContent = submitError.message;
+      }
+    });
+    copyCode.addEventListener('click', async () => {
+      if (!code.dataset.full) return;
+      try {
+        await navigator.clipboard.writeText(code.dataset.full);
+        copyCode.textContent = 'คัดลอกแล้ว';
+        setTimeout(() => { copyCode.textContent = 'คัดลอกรหัส'; }, 1800);
+      } catch {
+        copyCode.textContent = 'เลือกคัดลอกรหัสด้านบน';
       }
     });
   </script>
