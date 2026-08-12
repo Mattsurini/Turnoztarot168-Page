@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { checkCallAvailability, createBooking, listBookings, markBookingNotificationSent } from "../../../lib/queue-store";
+import { checkCallAvailability, createBooking, listBookings, markBookingNotificationSent, updateBookingNotification } from "../../../lib/queue-store";
 import { isBangkokFutureSlot } from "../../../lib/call-slots";
 import { notifyHanbiQueueCreated } from "../../../lib/hanbi-notify";
 import { resolveCatalogPackage } from "../../../lib/notion";
@@ -33,6 +33,7 @@ export async function POST(request) {
     const booking = await createBooking(input);
     let notification = { sent: false, skipped: true };
     try {
+      await updateBookingNotification(booking, "sending");
       notification = await notifyHanbiQueueCreated(booking);
       if (notification.sent) {
         await markBookingNotificationSent(booking);
@@ -40,6 +41,7 @@ export async function POST(request) {
         notification.outboxMarked = true;
       }
     } catch (notificationError) {
+      await updateBookingNotification(booking, "failed").catch((stateError) => console.error("Unable to persist Hanbi failure state", stateError));
       console.error("Hanbi queue notification failed", notificationError);
       notification = { sent: false, skipped: false, reason: "Hanbi notification failed" };
     }

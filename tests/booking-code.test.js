@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { generateBookingCode, bookingCodeFromNotionPageId, isModernBookingCode } from "../lib/booking-code.js";
+import { generateBookingCode, bookingCodeFromNotionPageId, isModernBookingCode, isManagedBookingCode } from "../lib/booking-code.js";
 
 test("booking code uses Bangkok date and a high-entropy token", () => {
   const code = generateBookingCode(new Date("2026-08-11T18:30:00Z"), () => Buffer.from("0123456789abcdef0123456789abcdef", "hex"));
